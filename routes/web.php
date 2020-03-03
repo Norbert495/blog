@@ -12,5 +12,9 @@
 */
 
 Route::get('/', function () {
-    return view('index');
+    return view('pages.post');
+});
+
+Route::get('/about-me', function () {
+    return view('pages.about');
 });
