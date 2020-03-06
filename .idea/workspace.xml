@@ -3,7 +3,8 @@
   <component name="ChangeListManager">
     <list default="true" id="5eaeb931-e667-4905-8dcb-5f0b8e1e8c78" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Post.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Post.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/migrations/2020_03_05_202009_create_post_table.php" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -169,7 +170,8 @@
       <workItem from="1580473788047" duration="1788000" />
       <workItem from="1583261862194" duration="2650000" />
       <workItem from="1583350004610" duration="2388000" />
-      <workItem from="1583438535241" duration="2666000" />
+      <workItem from="1583438535241" duration="3448000" />
+      <workItem from="1583523647130" duration="991000" />
     </task>
     <servers />
   </component>
@@ -181,9 +183,10 @@
       <screen x="0" y="0" width="1440" height="900" />
     </state>
     <state x="538" y="380" key="NewPhpFileDialog/0.0.1440.900@0.0.1440.900" timestamp="1583264990623" />
-    <state x="743" y="245" key="com.intellij.ide.util.TipDialog" timestamp="1583438536089">
-      <screen x="0" y="23" width="1440" height="812" />
+    <state x="743" y="246" key="com.intellij.ide.util.TipDialog" timestamp="1583523661977">
+      <screen x="0" y="23" width="1440" height="816" />
     </state>
     <state x="743" y="245" key="com.intellij.ide.util.TipDialog/0.23.1440.812@0.23.1440.812" timestamp="1583438536089" />
+    <state x="743" y="246" key="com.intellij.ide.util.TipDialog/0.23.1440.816/-1920.-157.1920.1057@0.23.1440.816" timestamp="1583523661977" />
   </component>
 </project>
