@@ -1,8 +1,10 @@
-@extends('layouts/master')
+@extends('layouts.master')
 @section('title', 'Posts')
+
 @section('content')
-    @foreach($posts as $post)
-        @if($post->type=== 'text')
+@if($posts->count() > 0)
+@foreach($posts as $post)
+@if($post->type === 'text')
 <article class="post formatText">
     <div class="postContent">
         <div class="wrapper">
@@ -40,10 +42,10 @@
     <figure class="postImage">
         <i class="postPremium fa fa-star"></i>
         <a href="#">
-            <img src="{{ $post->image }}" alt="" class="mainPhoto">
+        <img src="{{ $post->image }}" alt="" class="mainPhoto">
         </a>
         <div class="cover"
-             style="background: url({{ $post->image }}) no-repeat;">
+            style="background: url({{ $post->image }}) no-repeat;">
         </div>
     </figure>
     <div class="meta">
@@ -66,4 +68,9 @@
 </article>
 @endif
 @endforeach
-    @endsection
+@else
+<div class="wrapper">
+    <p>Nie dodano jeszcze żadnych wpisów.</p>
+</div>
+@endif
+@endsection
