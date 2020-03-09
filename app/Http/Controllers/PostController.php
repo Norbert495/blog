@@ -10,8 +10,15 @@ class PostController extends Controller
 {
     public function index()
     {
-        $posts = Post::latest('date')->get();
+        $posts = Post::latest('date')->paginate(3);
 
         return view('pages.posts', compact('posts'));
+    }
+
+    public function show(Post $post){
+        //dd($post);
+        //return $post; //return json
+        return view('pages.post', compact('post'));
+        
     }
 }

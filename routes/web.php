@@ -12,7 +12,14 @@
 */
 
 Route::get('/', 'PostController@index');
+Route::get('/posts/{post}', 'PostController@show')->name('posts.single');
+
 
 Route::get('/about-me', function () {
     return view('pages.about');
 })->name('about');
+
+Auth::routes();
+
+Route::get('/account/register', 'Auth\RegisterController@showRegistrationForm')->name('register');
+Route::post('account/register', 'Auth\RegisterController@register');

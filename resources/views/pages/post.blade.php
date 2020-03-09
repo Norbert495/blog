@@ -1,21 +1,16 @@
 @extends('layouts.master')
-@section('title', 'Posts')
+@section('title', $post->title)
 
 @section('content')
-@if($posts->count() > 0)
-@foreach($posts as $post)
 @if($post->type === 'text')
 <article class="post formatText">
     <div class="postContent">
         <div class="wrapper">
             <h2 class="postTitle">
-                <a href="{{ route('posts.single', $post->slug) }}">{{ $post->title }}</a>
+                <a href="#">{{ $post->title }}</a>
             </h2>
             <div class="rte">
-                {!! $post->excerpt !!}
-                <p class="readMore">
-                    <a href="{{ route('posts.single', $post->slug) }}">Keep reading</a>
-                </p>
+                {!! $post->content !!}
             </div>
         </div>
     </div>
@@ -41,8 +36,8 @@
 <article class="post formatPhoto">
     <figure class="postImage">
         <i class="postPremium fa fa-star"></i>
-        <a href="{{ route('posts.single', $post->slug) }}">
-            <img src="{{ $post->image }}" alt="" class="mainPhoto">
+        <a href="#">
+        <img src="{{ $post->image }}" alt="" class="mainPhoto">
         </a>
         <div class="cover"
             style="background: url({{ $post->image }}) no-repeat;">
@@ -66,14 +61,5 @@
         </div>
     </div>
 </article>
-@endif
-@endforeach
-
-@include('partials.pagination', ['pagination' => $posts])
-
-@else
-<div class="wrapper">
-    <p>Nie dodano jeszcze żadnych wpisów.</p>
-</div>
 @endif
 @endsection
