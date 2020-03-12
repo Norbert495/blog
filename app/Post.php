@@ -7,7 +7,7 @@ use Illuminate\Support\Str;
 
 class Post extends Model
 {
-    protected $guarded = [];
+    protected $fillable = ['title', 'type', 'date', 'content', 'image'];
     protected $dates = ['date'];
     public function setTitleAttribute($value){
         $this->attributes['title'] = $value;
