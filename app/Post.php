@@ -9,6 +9,7 @@ class Post extends Model
 {
     protected $fillable = ['title', 'type', 'date', 'content', 'image'];
     protected $dates = ['date'];
+    
     public function setTitleAttribute($value){
         $this->attributes['title'] = $value;
         $this->attributes['slug'] = Str::slug($value);

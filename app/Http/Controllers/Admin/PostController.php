@@ -4,8 +4,9 @@ namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-
+use Illuminate\Support\Arr;
 use App\Post;
+
 
 class PostController extends Controller
 {
@@ -27,7 +28,17 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
-        $post = Post::create($request->all());
+        $data =  $request->validate([
+            'title' => 'required|max:255',
+            'type' => 'required|in:text, photo',
+            'date' => 'nullable|date',
+            'image' => 'nullable',
+            'content' => 'nullable'
+        ]);
+
+        Arr::add($data, 'date', now());
+
+        $post = Post::create($data);
 
         session()->flash('message', 'Post has been added!');
 
