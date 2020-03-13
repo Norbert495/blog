@@ -7,7 +7,7 @@
     <div class="postContent">
         <div class="wrapper">
             <h2 class="postTitle">
-                <a href="#">{{ $post->title }}</a>
+                {{ $post->title }}
             </h2>
             <div class="rte">
                 {!! $post->content !!}
@@ -27,7 +27,7 @@
         <div class="flex flex-sb">
             <p class="date"><i class="fa fa-clock-o"></i> {{ $post->date->diffForHumans() }}</p>
             <p>
-                <a href="#" class="link"><i class="fa fa-edit"></i> Edytuj</a>
+                <a href="{{ route('admin.post.edit', $post->id) }}" class="link"><i class="fa fa-edit"></i> Edytuj</a>
             </p>
         </div>
     </div>
@@ -56,7 +56,7 @@
         <div class="flex flex-sb">
             <p class="date"><i class="fa fa-clock-o"></i> {{ $post->date->diffForHumans() }}</p>
             <p>
-                <a href="#" class="link"><i class="fa fa-edit"></i> Edytuj</a>
+                <a href="{{ route('admin.post.edit', $post->id) }}" class="link"><i class="fa fa-edit"></i> Edytuj</a>
             </p>
         </div>
     </div>
