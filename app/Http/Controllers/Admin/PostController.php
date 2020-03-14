@@ -6,10 +6,19 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Arr;
 use App\Post;
-
+use Illuminate\Support\Facades\Validator;
 
 class PostController extends Controller
 {
+    protected function validator($data){
+        return Validator::make($data, [
+            'title' => 'required|max:255',
+            'type' => 'required|in:text, photo',
+            'date' => 'nullable|date',
+            'image' => 'nullable',
+            'content' => 'nullable'
+            ]); 
+    }
     /**
      * Show the form for creating a new resource.
      *
@@ -28,15 +37,7 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
-        $data =  $request->validate([
-            'title' => 'required|max:255',
-            'type' => 'required|in:text, photo',
-            'date' => 'nullable|date',
-            'image' => 'nullable',
-            'content' => 'nullable'
-        ]);
-
-        Arr::add($data, 'date', now());
+        $data =  $this->validator($request->all())->validate();
 
         $post = Post::create($data);
 
@@ -67,7 +68,13 @@ class PostController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $post = Post::findOrFail($id);
+
+        $data =  $this->validator($request->all())->validate();
+        $post->update($data);
+
+        return back()->with('message', 'The post has been update ');
+
     }
 
     /**
@@ -78,6 +85,10 @@ class PostController extends Controller
      */
     public function destroy($id)
     {
-        //
+       $post = Post::findOrFail($id);
+       
+       $post->delete();
+
+       return redirect('/')->with('message', 'Post has been deleted');
     }
 }
