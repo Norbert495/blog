@@ -1,19 +1,19 @@
 @extends('layouts.master')
 @section('title', 'Reset Password')
 
-
 @section('content')
 <div class="wrapper">
     <div class="rte">
-        <h1>Reset Password</h1>
+        <h1>Reset password</h1>
     </div>
 
-<form method="POST" action="{{ route('password.email') }}">
-    @csrf
-    <div class="form-fieldset">
-        <input class="form-field{{ $errors->has('email')  ? 'is-invalid' : ''}}" type="email" name="email" placeholder="Your e-mail">
-    </div>
-    <button class="button">Submit</button>
+    <form method="POST" action="{{ route('password.email') }}">
+        @csrf
+
+        <div class="form-fieldset">
+            <input class="form-field{{ $errors->has('email') ? ' is-invalid' : '' }}" type="email" name="email" placeholder="Your e-mail">
+        </div>
+        <button class="button">Submit</button>
     </form>
 </div>
 @endsection

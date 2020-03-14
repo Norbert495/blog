@@ -2,7 +2,7 @@
 <div class="wrapper">
     <div class="pagination">
         @if($pagination->currentPage() !== 1)
-    <a href="{{ $pagination->previousPageUrl() }}" class="paginationPrev" title="Previous">
+        <a href="{{ $pagination->previousPageUrl() }}" class="paginationPrev" title="Previous">
             <i class="fa fa-caret-left"></i>&nbsp;&nbsp;&nbsp;Previous
         </a>
         @endif

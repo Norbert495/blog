@@ -70,16 +70,16 @@ class RegisterController extends Controller
             'password' => Hash::make($data['password']),
         ]);
     }
-        /**
-        * The user has been registered.
-        *
-        * @param  \Illuminate\Http\Request  $request
-        * @param  mixed  $user
-        * @return mixed
-        */
+
+    /**
+     * The user has been registered.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  mixed  $user
+     * @return mixed
+     */
     protected function registered(Request $request, $user)
     {
-        session()->flash('message', "Hi {$user->name}, you have been registered and logged in!");
+        session()->flash('message', "Hi {$user->name}, you've been registered and logged in!");
     }
-
 }

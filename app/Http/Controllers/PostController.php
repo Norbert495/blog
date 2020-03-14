@@ -7,22 +7,16 @@ use Illuminate\Http\Request;
 use App\Post;
 
 class PostController extends Controller
-{ /* sprawdzanie potwierdzenia emaila 
-    public function __construct()
-    {
-        $this->middleware('verified')->only('show');
-    }*/
-    public function index()
+{
+    public function index(Request $request)
     {
         $posts = Post::latest('date')->paginate(3);
 
         return view('pages.posts', compact('posts'));
     }
 
-    public function show(Post $post){
-        //dd($post);
-        //return $post; //return json
+    public function show(Post $post)
+    {
         return view('pages.post', compact('post'));
-        
     }
 }

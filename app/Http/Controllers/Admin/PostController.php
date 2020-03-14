@@ -4,21 +4,25 @@ namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use Illuminate\Support\Arr;
+
 use App\Post;
+use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Storage;
 
 class PostController extends Controller
 {
-    protected function validator($data){
+    protected function validator($data)
+    {
         return Validator::make($data, [
             'title' => 'required|max:255',
-            'type' => 'required|in:text, photo',
+            'type' => 'required|in:text,photo',
             'date' => 'nullable|date',
-            'image' => 'nullable',
+            'photo'=> 'mimes:jpeg,jpg,png,bmp,gif,svg',
             'content' => 'nullable'
-            ]); 
+        ]);
     }
+
     /**
      * Show the form for creating a new resource.
      *
@@ -37,7 +41,12 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
-        $data =  $this->validator($request->all())->validate();
+        $data = $this->validator($request->all())->validate();
+
+        if (isset($data['image'])) {
+            $path = $request->file('image')->store('photos');
+            $data['image'] = $path;
+        }
 
         $post = Post::create($data);
 
@@ -69,12 +78,22 @@ class PostController extends Controller
     public function update(Request $request, $id)
     {
         $post = Post::findOrFail($id);
+        $oldImage = $post->image;
 
-        $data =  $this->validator($request->all())->validate();
+        $data = $this->validator($request->all())->validate();
+
+        if (isset($data['image'])) {
+            $path = $request->file('image')->store('photos');
+            $data['image'] = $path;
+        }
+
         $post->update($data);
 
-        return back()->with('message', 'The post has been update ');
+        if (isset($data['image'])) {
+            Storage::delete($oldImage);
+        }
 
+        return back()->with('message', 'Post has been updated!');
     }
 
     /**
@@ -85,10 +104,12 @@ class PostController extends Controller
      */
     public function destroy($id)
     {
-       $post = Post::findOrFail($id);
-       
-       $post->delete();
+        $post = Post::findOrFail($id);
 
-       return redirect('/')->with('message', 'Post has been deleted');
+        $post->delete();
+
+        Storage::delete($post->image);
+
+        return redirect('/')->with('message', 'Post has been deleted!');
     }
 }
