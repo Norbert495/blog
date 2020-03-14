@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\Storage;
 
 class Post extends Model
 {
-    protected $fillable = ['title', 'type', 'date', 'content', 'image'];
+    protected $fillable = ['title', 'type', 'date', 'content', 'published', 'premium', 'image'];
     protected $dates = ['date'];
 
     public function setTitleAttribute($value)
@@ -36,5 +36,18 @@ class Post extends Model
     public function getPhotoAttribute()
     {
         return Str::startsWith($this->image, 'http') ? $this->image : Storage::url($this->image);
+    }
+
+    public function scopePublished($query)
+    {
+        $user = auth()->user();
+        if($user && $user->can('manage-posts')){
+                return $query;
+        }
+
+        if(!$user){
+            $query->where('premium', '<>', 1);
+        }
+        return $query->where('published', 1);
     }
 }
