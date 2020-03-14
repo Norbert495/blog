@@ -17,13 +17,14 @@ class PostController extends Controller
         $this->middleware('auth');
         $this->middleware('can:manage-posts');
     }
+
     protected function validator($data)
     {
         return Validator::make($data, [
             'title' => 'required|max:255',
             'type' => 'required|in:text,photo',
             'date' => 'nullable|date',
-            'photo'=> 'mimes:jpeg,jpg,png,bmp,gif,svg',
+            'image' => 'nullable|image|max:1024',
             'content' => 'nullable'
         ]);
     }

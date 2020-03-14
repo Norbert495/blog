@@ -11,11 +11,13 @@ class PostsTableSeeder extends Seeder
      */
     public function run()
     {
-        foreach(range(1, 10) as $i){
+        foreach (range(1, 10) as $i) {
             $factory = factory(App\Post::class);
-            if($i % 2 === 0){
+
+            if ($i % 2 === 0) {
                 $factory->state('image');
             }
+
             $factory->create();
         }
     }

@@ -12,8 +12,7 @@
 */
 
 Route::get('/', 'PostController@index');
-Route::get('/posts/{post}', 'PostController@show')->name('posts.single');
-
+Route::get('/post/{post}', 'PostController@show')->name('posts.single');
 
 Route::get('/about-me', function () {
     return view('pages.about');
@@ -30,16 +29,12 @@ Route::get('/password/reset', 'Auth\ForgotPasswordController@showLinkRequestForm
 Route::post('/password/email', 'Auth\ForgotPasswordController@sendResetLinkEmail')->name('password.email');
 Route::get('/password/reset/{token}', 'Auth\ResetPasswordController@showResetForm')->name('password.reset');
 Route::post('/password/reset', 'Auth\ResetPasswordController@reset')->name('password.update');
-
-//weryfikacja 
-Route::get('email/verify/{id}', 'Auth\VerificationController@verify')->name('verification.verify');
+Route::get('/email/verify/{id}', 'Auth\VerificationController@verify')->name('verification.verify');
 Route::get('/email/verify', 'Auth\VerificationController@show')->name('verification.notice');
 Route::get('/email/resend', 'Auth\VerificationController@resend')->name('verification.resend');
 
-//admin
 Route::get('/admin/post/create', 'Admin\PostController@create')->name('admin.post.create');
 Route::post('/admin/post/create', 'Admin\PostController@store');
-
 Route::get('/admin/post/{id}', 'Admin\PostController@edit')->name('admin.post.edit');
 Route::put('/admin/post/{id}', 'Admin\PostController@update');
 Route::delete('/admin/post/{id}', 'Admin\PostController@destroy')->name('admin.post.delete');
