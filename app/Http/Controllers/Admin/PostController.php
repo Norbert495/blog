@@ -59,6 +59,7 @@ class PostController extends Controller
             $path = $request->file('image')->store('photos');
             $data['image'] = $path;
         }
+        $data['user_id'] = $request->user()->id;
 
         $post = Post::create($data);
 

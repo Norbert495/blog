@@ -26,13 +26,13 @@
             </li>
         </ul>
         <div class="flex flex-sb">
-            <p class="date"><i class="fa fa-clock-o"></i> {{ $post->date->diffForHumans() }}</p>
+            <p class="date"><i class="fa fa-clock-o"></i> {{ $post->date->diffForHumans() }} <i class="fa fa-user"></i> by {{ $post->author->name }}</p>
             @can('manage-posts')
             <p>
                 <a href="{{ route('admin.post.edit', $post->id) }}" class="link"><i class="fa fa-edit"></i> Edit</a>
             </p>
             @endcan
-        </div>
+                </div>
     </div>
 </article>
 @elseif($post->type === 'photo')
@@ -57,13 +57,13 @@
             </li>
         </ul>
         <div class="flex flex-sb">
-            <p class="date"><i class="fa fa-clock-o"></i> {{ $post->date->diffForHumans() }}</p>
+            <p class="date"><i class="fa fa-clock-o"></i> {{ $post->date->diffForHumans() }} <i class="fa fa-user"></i> by {{ $post->author->name }}</p>
             @can('manage-posts')
             <p>
                 <a href="{{ route('admin.post.edit', $post->id) }}" class="link"><i class="fa fa-edit"></i> Edit</a>
             </p>
             @endcan
-        </div>
+                </div>
     </div>
 </article>
 @endif
