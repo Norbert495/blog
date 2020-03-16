@@ -29,7 +29,7 @@
             </div>
             <div class="form-fieldset">
                 <label class="form-label">Published:</label>
-                <input type="checkbox" name="published" value="1">
+                <input type="checkbox" name="published" value="1" >
             </div>
             <div class="form-fieldset">
                 <label class="form-label">Premium:</label>
