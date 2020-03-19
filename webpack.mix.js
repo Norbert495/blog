@@ -11,5 +11,17 @@ const mix = require('laravel-mix');
  |
  */
 
-mix.js('resources/js/app.js', 'public/js')
-   .sass('resources/sass/app.scss', 'public/css');
+mix.disableNotifications();
+
+mix.browserSync({
+    port: 3002,
+    proxy: "192.168.10.10",
+    open: false,
+    notify: false,
+});
+
+if (!mix.inProduction()) {
+    mix.webpackConfig({ devtool: "inline-source-map" }).sourceMaps();
+}
+
+mix.sass("resources/sass/main.scss", "public/css").version();
