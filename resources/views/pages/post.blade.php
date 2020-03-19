@@ -47,15 +47,16 @@
         </div>
     </figure>
     <div class="meta">
-        <ul class="tags">
-            <li><i class="fa fa-tags"></i></li>
-            <li>
-                <a href="#">photo</a>
-            </li>
-            <li>
-                <a href="#">dog</a>
-            </li>
-        </ul>
+        @if($post->tags->count() > 0)
+            <ul class="tags">
+                <li><i class="fa fa-tags"></i></li>
+                @foreach($post->tags as $tag)
+                    <li>
+                        <a href="{{ route('posts.tags', $tag->slug) }}">{{ $tag->name }}</a>
+                    </li>
+                    @endforeach
+            </ul>
+        @endif
         <div class="flex flex-sb">
             <p class="date"><i class="fa fa-clock-o"></i> {{ $post->date->diffForHumans() }} <i class="fa fa-user"></i> by {{ $post->author->name }}</p>
             @can('manage-posts')
@@ -70,7 +71,7 @@
 <section class="comments">
     <div class="wrapper">
         @if($post->comments->count() > 0)
-        
+
         <div class="rte">
         <h2>{{  $post->comments->count() }}  {{ $post->comments->count() > 1 ? 'Comments' : 'Comment' }}</h2>
         </div>
@@ -105,7 +106,7 @@
             <input type="hidden" name="post_id" value="{{ $post->id }}">
 
                 <div class="form-fieldset is-full">
-                    <textarea name="content" class="form-textarea{{ $errors->has('content') ? ' is-invalid' : '' }}" placeholder="Your comment">{{ old('content') }}</textarea> 
+                    <textarea name="content" class="form-textarea{{ $errors->has('content') ? ' is-invalid' : '' }}" placeholder="Your comment">{{ old('content') }}</textarea>
                 </div>
                 <button class="button">Submit</button>
             </form>
