@@ -43,11 +43,14 @@
                 <label class="form-label">Image:</label>
                 <input type="file" name="image">
             </div>
-            <div class="form-fieldset is-wide">
-                <textarea class="form-textarea" name="content" placeholder="Content">{{ old('content') }}</textarea>
+            <div class="form-fieldset is-full">
+                <textarea id="wysiwyg" class="form-textarea" name="content" placeholder="Content">{{ old('content') }}</textarea>
             </div>
             <button class="button">Add post</button>
         </form>
     </div>
 </div>
+@endsection
+@section('footer_scripts')
+    <script src="{{ mix('/js/main.js')  }}"></script>
 @endsection

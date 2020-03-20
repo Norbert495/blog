@@ -23,5 +23,5 @@ mix.browserSync({
 if (!mix.inProduction()) {
     mix.webpackConfig({ devtool: "inline-source-map" }).sourceMaps();
 }
-
+mix.js("resources/Js/main.js", "public/js").version();
 mix.sass("resources/sass/main.scss", "public/css").version();
