@@ -10,6 +10,11 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
+Route::get('/mail', function() {
+    $user = App\User::first();
+
+    return new App\Mail\UserRegistered($user);
+});
 
 Route::get('/', 'PostController@index');
 Route::get('/post/{slug}', 'PostController@show')->name('posts.single');
