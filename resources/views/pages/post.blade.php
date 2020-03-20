@@ -79,7 +79,7 @@
             @foreach($post->comments as $comment )
             <article class="comment">
                 <div class="comment-meta">
-                    <img src="images/avatar.jpg" alt="{{ $comment->author->name}}" class="comment-avatar">
+                    <img src="{{ Gravatar::src($comment->author->email, 100) }}" alt="{{ $comment->author->name}}" class="comment-avatar">
                     <span class="comment-user">{{ $comment->author->name}}</span>
                 <span class="comment-date">{{ $comment->date->format('d.m.Y') }}</span>
                 </div>
@@ -87,16 +87,6 @@
             </article>
             @endforeach
             @endif
-            <article class="comment">
-                <div class="comment-meta">
-                    <img src="images/avatar.jpg" alt="Tom Doe" class="comment-avatar">
-                    <span class="comment-user">Tom Doe</span>
-                    <span class="comment-date">20.02.2019</span>
-                </div>
-                <p class="comment-body rte">Lorem ipsum dolor sit amet consectetur, adipisicing elit.
-                    Voluptate explicabo in nisi nam ducimus natus, illum sit vitae non distinctio?</p>
-            </article>
-        </div>
         <div class="comments-add">
             <div class="rte">
                 <h2>Add comment</h2>
