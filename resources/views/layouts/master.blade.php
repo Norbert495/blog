@@ -26,13 +26,13 @@
                             @can('manage-posts')
                             <li><a href="{{ route('admin.post.create') }}">Create</a></li>
                             @endcan
-                            <li><a href="#">Contact</a></li>
+                            <li><a href="{{ route('contact') }}">Contact</a></li>
                             <li><a href="#">RSS <i class="fa fa-rss-square"></i></a></li>
                         </ul>
                     </nav>
-                    <form action="#" class="search">
+                    <form method="GET" action="{{route('search')}}" class="search">
                         <div class="form-fieldset">
-                            <input type="text" class="form-field" placeholder="Search...">
+                            <input type="text" class="form-field" name="q" placeholder="Search..." value="{{  request()->get('q') }}">
                         </div>
                     </form>
                 </div>
@@ -49,7 +49,7 @@
                             @guest
                             <li><a href="{{ route('login') }}">Login</a></li>
                             @endguest
-                            <li><a href="#">Contact</a></li>
+                            <li><a href="{{ route('contact') }}">Contact</a></li>
                             <li><a href="#">RSS</a></li>
                         </ul>
                     </nav>

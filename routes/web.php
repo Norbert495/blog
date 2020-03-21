@@ -15,6 +15,7 @@ Route::get('/mail', function() {
 
     return new App\Mail\UserRegistered($user);
 });
+//Route::feeds();
 
 Route::get('/', 'PostController@index');
 Route::get('/post/{slug}', 'PostController@show')->name('posts.single');
@@ -24,7 +25,6 @@ Route::get('/about-me', function () {
     return view('pages.about');
 })->name('about');
 
-Auth::routes(['verify' => true]);
 
 Route::get('/account/register', 'Auth\RegisterController@showRegistrationForm')->name('register');
 Route::post('/account/register', 'Auth\RegisterController@register');
@@ -46,3 +46,8 @@ Route::put('/admin/post/{id}', 'Admin\PostController@update');
 Route::delete('/admin/post/{id}', 'Admin\PostController@destroy')->name('admin.post.delete');
 
 Route::post('comment/create', 'CommentController@store')->name('comment.create');
+
+Route::get('/contact', 'ContactController@show')->name('contact');
+Route::post('/contact', 'ContactController@send');
+
+Route::get('/search', 'SearchController@index')->name('search');
